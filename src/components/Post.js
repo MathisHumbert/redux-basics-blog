@@ -1,5 +1,5 @@
-import React from "react";
-import Like from "./Like";
+import React from 'react';
+import Like from './Like';
 
 const Post = ({ post }) => {
   return (
