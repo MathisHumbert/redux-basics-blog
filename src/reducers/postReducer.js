@@ -3,6 +3,7 @@ import {
   DELETE_POSTS,
   EDIT_POSTS,
   GET_POSTS,
+  ADD_LIKE,
 } from '../actions/postAction';
 
 // const inititalState = {
@@ -19,7 +20,6 @@ export default function postReducer(state = inititalState, action) {
     return [action.payload, ...state];
   }
   if (action.type === EDIT_POSTS) {
-    console.log(action.payload);
     let tempState = state.map((post) => {
       if (post.id === action.payload.id) {
         post.content = action.payload.content;
@@ -30,6 +30,14 @@ export default function postReducer(state = inititalState, action) {
   }
   if (action.type === DELETE_POSTS) {
     return state.filter((item) => item.id !== action.payload.postId);
+  }
+  if (action.type === ADD_LIKE) {
+    return state.map((post) => {
+      if (post.id === action.payload.id) {
+        post.likes = action.payload.likes;
+      }
+      return post;
+    });
   }
 
   return state;
